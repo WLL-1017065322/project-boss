@@ -84,8 +84,8 @@
           </a>-->
         </div>
       </div>
+      <button class="logout" @click="logout">退出登录</button>
     </section>
-    <button style="color:red;" @click="logout">退出登录</button>
 
     <footer>
       <div class="content">
@@ -106,12 +106,10 @@ import { setTimeout } from 'timers';
 import axios from 'axios';
 import eventVue from '../bus';
 
-
-
 export default {
   data() {
     return {
-      isLogouting: false,
+      isLogouting: false
     };
   },
   methods: {
@@ -123,7 +121,7 @@ export default {
     test() {
       axios({
         method: 'get',
-        url: 'http://localhost:3000/usercenter',
+        url: 'http://localhost:3000/usercenter'
         // headers: { "Content-Type": "application/x-www-form-urlencoded" },
         // data: qs.stringify(data)
         //   email: this.email,
@@ -136,15 +134,15 @@ export default {
         //   re_password
         // }
       })
-        .then((response) => {
+        .then(response => {
           console.log(response);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
-    },
+    }
   },
-  components: {},
+  components: {}
   // mounted(){
   //   this.test()
   // }
@@ -226,13 +224,8 @@ div {
 
   section {
     // overflow: hidden;
-    height: 425px;
     .content {
       // margin: 10px 0;
-      .iconfont {
-        font-size: 30px;
-        // line-height: 30px;
-      }
       background: #fff;
       div::before {
         display: block;
@@ -240,6 +233,10 @@ div {
         width: 100%;
         height: 10px;
         background-color: #eee;
+      }
+      .iconfont {
+        font-size: 30px;
+        // line-height: 30px;
       }
 
       a {
@@ -269,6 +266,15 @@ div {
           color: #000;
         }
       }
+    }
+    .logout {
+      margin-top:10px;
+      margin-bottom: 10px;
+      display: block;
+      width: 100%;
+      background-color:#e74c3c;
+      color: #fff;
+
     }
   }
 

@@ -1,7 +1,10 @@
 import Vue from 'vue';
 // 引入mintui全部组件   的tabbar
 import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css';
 import Vuex from 'vuex';
+import '../public/iconfont/iconfont.css';
+
 // element 组件
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -16,8 +19,9 @@ import http from './http';
 // import '../public/iconfont/iconfont.css';
 
 Vue.use(Vuex);
-Vue.use(Mint);
 Vue.use(ElementUI);
+Vue.use(Mint);
+
 
 Vue.config.productionTip = false;
 

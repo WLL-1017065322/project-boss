@@ -1,42 +1,5 @@
 <template>
   <div class="home">
-    <router-view></router-view>
-    <!-- <div class="banner">
-      <router-link to="/joblist">
-        <span>职位</span>
-      </router-link>
-      <router-link to="/company">
-        <span>公司</span>
-      </router-link>
-      <router-link to="/message">
-        <span>消息</span>
-      </router-link>
-      <router-link to="/aboutme">
-        <span>我的</span>
-      </router-link>
-    </div>-->
-
-    <!-- <nav class="mui-bar mui-bar-tab">
-      <router-link to="/joblist" class="mui-tab-item mui-active" href="#tabbar">
-        <span class="mui-icon mui-icon-home"></span>
-        <span class="mui-tab-label">职位</span>
-      </router-link>
-      <router-link to="/company" class="mui-tab-item" href="#tabbar-with-chat">
-        <span class="mui-icon mui-icon-email">
-          <span class="mui-badge">9</span>
-        </span>
-        <span class="mui-tab-label">公司</span>
-      </router-link>
-      <router-link to="/message" class="mui-tab-item" href="#tabbar-with-contact">
-        <span class="mui-icon mui-icon-chat"></span>
-        <span class="mui-tab-label">消息</span>
-      </router-link>
-      <router-link to="/aboutme" class="mui-tab-item" href="#tabbar-with-map">
-        <span class="mui-icon mui-icon-contact"></span>
-        <span class="mui-tab-label">我的</span>
-      </router-link>
-    </nav>-->
-
     <nav class="mui-bar mui-bar-tab">
       <router-link to="/joblist" class="mui-tab-item" href="#tabbar">
         <span class="mui-icon iconfont">&#xe638;</span>
@@ -64,7 +27,7 @@
 <script>
 export default {
   name: 'home',
-  components: {},
+  components: {}
 };
 </script>
 
@@ -98,4 +61,9 @@ export default {
 .router-link-active {
   color: #53cac3;
 }
+
+// 组件切换的动画
+
+
+
 </style>

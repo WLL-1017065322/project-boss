@@ -1,31 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link> | -->
-      <!-- <router-link to="/about">About</router-link> -->
-    </div>
-    <router-view />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
+
+    <footer-guide></footer-guide>
   </div>
 </template>
 
 <script>
+import FooterGuide from './components/FooterGuide';
 export default {
   name: 'app',
   data() {
-    return {
-      
-    };
+    return {};
   },
   watch: {
     // 如果路由变化，执行函数
   },
-  mounted() {
-
-  },
+  mounted() {},
+  components: { FooterGuide },
 
   methods: {
-    
-
     // 网页拦截
     // checkLogin() {
     //   console.log(this.$route.path);
@@ -41,7 +37,7 @@ export default {
     //     // this.$router.push(this.$route.path)
     //   }
     // }
-  },
+  }
 };
 </script>
 
@@ -68,5 +64,13 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leve-to {
+  opacity: 0;
 }
 </style>

@@ -13,7 +13,11 @@
       </nav>
     </header>
     <section>
-      <ul>
+      <ul
+        v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="10"
+      >
         <li class="clear" v-for="item in companyList" :key="item.id">
           <div class="left">
             <img :src="item.comp_pic" alt />
@@ -37,20 +41,26 @@
           </div>
         </li>
       </ul>
+      <div class="company-load" v-show="true">
+        <mt-spinner type="double-bounce" color="#26a2ff"></mt-spinner>
+        <span>官人慢点</span>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-import Axios from 'axios'
-import rongziCom from '../components/company/rongziCom.vue'
-import guimoCom from '../components/company/guimoCom.vue'
-import hangyeCom from '../components/company/hangyeCom.vue'
+import Axios from 'axios';
+import rongziCom from '../components/company/rongziCom.vue';
+import guimoCom from '../components/company/guimoCom.vue';
+import hangyeCom from '../components/company/hangyeCom.vue';
 
 export default {
   data() {
     return {
       companyList: [],
+      tempList: [],
+      loading: false,
       navList: [
         {
           title: '融资',
@@ -70,7 +80,7 @@ export default {
       ],
       current: null,
       currentComponent: ''
-    }
+    };
   },
   components: {
     rongziCom,
@@ -82,34 +92,44 @@ export default {
       Axios.get('/api/data/comdetail.json')
         .then(res => {
           if (res.data.code == '200') {
-            this.companyList = res.data.company
+            this.companyList = res.data.company;
+            this.tempList = res.data.company;
             // console.log(this.companyList)
           }
         })
         .catch(error => {
           // console.log(error)
-        })
+        });
     },
     navClick(index) {
       if (index != this.current) {
-        this.current = index
-        this.currentComponent = this.navList[index].com
+        this.current = index;
+        this.currentComponent = this.navList[index].com;
       } else {
-        this.current = null
-        this.currentComponent = ''
+        this.current = null;
+        this.currentComponent = '';
       }
+    },
+    loadMore() {
+      this.loading = true;
+      setTimeout(() => {
+        this.companyList = this.companyList.concat(this.tempList);
+
+        this.loading = false;
+      }, 2500);
     }
   },
   mounted() {
-    this.getCompanyListApi()
+    this.getCompanyListApi();
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
 div {
   header {
-    position: fixed;
+    position: sticky;
+    top: 0;
     width: 100%;
     .top {
       width: 100%;
@@ -134,6 +154,7 @@ div {
         line-height: 45.41px;
         align-items: center;
         text-align: center;
+        border-bottom: 1px solid #eee;
 
         li {
           width: 33.33%;
@@ -154,12 +175,13 @@ div {
     }
   }
   section {
-    padding-top: 100px;
+    padding-bottom: 55px;
+
     ul {
-      padding: 20px 10px;
-      margin-bottom: 30px;
+      // padding: 20px 10px;
+      // margin-bottom: 30px;
       li {
-        // padding: 20px 10px;
+        margin-bottom: 8px;
         background-color: #fff;
         display: flex;
         .left {
@@ -202,6 +224,16 @@ div {
             border-top: 0.5px solid #e5e5e5;
           }
         }
+      }
+    }
+    .company-load {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      span {
+        font-size: 12px;
+        color: #26a2ff;
       }
     }
   }

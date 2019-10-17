@@ -9,7 +9,7 @@
         </div>
       </div>
       <nav>
-        <ul>
+        <ul class="job-content">
           <li
             v-for="(item,index) in navList"
             :key="item.id"
@@ -27,8 +27,12 @@
     </header>
 
     <section>
-      <ul>
-        <li v-for="item in jobList" :key="item.id">
+      <ul
+        v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="10"
+      >
+        <li v-for="(item,index) in jobList" :key="index">
           <a href="#/detail/0" class>
             <img :src="item.src" alt />
             <div class="text">
@@ -46,6 +50,11 @@
           </a>
         </li>
       </ul>
+      <!-- 加载种 -->
+      <div class="job-load" v-show="loading">
+        <mt-spinner type="double-bounce" color="#26a2ff"></mt-spinner>
+        <span>官人慢点</span>
+      </div>
     </section>
   </div>
 </template>
@@ -62,29 +71,31 @@ export default {
     return {
       current: null,
       jobList: [],
+      tempList: [],
       currentComponent: '',
+      loading: false,
       navList: [
         {
           title: '推荐',
           id: 0,
-          com: 'recommendCom',
+          com: 'recommendCom'
         },
         {
           title: '上海',
           id: 1,
-          com: 'locationCom',
+          com: 'locationCom'
         },
         {
           title: '公司',
           id: 2,
-          com: 'companyCom',
+          com: 'companyCom'
         },
         {
           title: '要求',
           id: 3,
-          com: 'requireCom',
-        },
-      ],
+          com: 'requireCom'
+        }
+      ]
       // items: [
       //   {
       //     id: "001",
@@ -111,13 +122,13 @@ export default {
     recommendCom,
     companyCom,
     locationCom,
-    requireCom,
+    requireCom
   },
   methods: {
     getJobListApi() {
       axios
         .get('/api/data/joblist.json')
-        .then((res) => {
+        .then(res => {
           // console.log(res);
           if (res.data.code == '0') {
             // this.jobList == res.data.main
@@ -126,9 +137,10 @@ export default {
           }
 
           this.jobList = res.data.main;
+          this.tempList = res.data.main;
           // console.log(this.jobList);
         })
-        .catch((error) => {
+        .catch(error => {
           // console.log(error);
         });
     },
@@ -141,10 +153,17 @@ export default {
         this.currentComponent = '';
       }
     },
+    loadMore() {
+      this.loading = true;
+      setTimeout(() => {
+        this.jobList = this.jobList.concat(this.tempList);
+        this.loading = false;
+      }, 2500);
+    }
   },
   mounted() {
     this.getJobListApi();
-  },
+  }
 };
 </script>
 
@@ -152,7 +171,8 @@ export default {
 div {
   header {
     width: 100%;
-    position: fixed;
+    position: sticky;
+    top: 0;
 
     .top {
       display: flex;
@@ -179,6 +199,7 @@ div {
       width: 100%;
       height: 41.39px;
       background: #fff;
+      border-bottom: 1px solid #eee;
       ul {
         margin: 0;
         padding: 0;
@@ -213,13 +234,13 @@ div {
   }
 
   section {
-    padding: 110px 15px 50px;
-
     margin-bottom: 30px;
+    padding-bottom: 30px;
     ul {
       list-style: none;
       li {
         background: #fff;
+        margin-bottom: 8px;
 
         a {
           display: flex;
@@ -257,6 +278,16 @@ div {
             }
           }
         }
+      }
+    }
+    .job-load {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      span {
+        font-size: 12px;
+        color: #26a2ff;
       }
     }
   }
