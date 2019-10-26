@@ -14,7 +14,7 @@
           <input type="password" placeholder="请输入密码" v-model="model.password" maxlength="16" />
           <input type="password" placeholder="请再次输入密码" v-model="model.re_password" />
           <!-- <input type="submit" value="注册" @click="register" /> -->
-          <input type="submit" value="注册" />
+          <input type="submit" value="注册" class="btn-submit" />
         </div>
 
         <!-- <div class="info-register">
@@ -49,7 +49,7 @@ export default {
         // username: "",
         // password: "",
         // re_password: ""
-      },
+      }
     };
   },
   props: {},
@@ -67,26 +67,26 @@ export default {
       if (message) {
         this.$message({
           type: 'success',
-          message,
+          message
         });
       }
       if (
-        emailReg.test(this.model.email)
-        && this.model.password == this.model.re_password
+        emailReg.test(this.model.email) &&
+        this.model.password == this.model.re_password
       ) {
         // const res = await this.$http.post('rest/user_boss', this.model);
         const res = await this.$http.post('register', this.model);
         if (res.data) {
           this.$message({
             type: 'success',
-            message: '注册成功',
+            message: '注册成功'
           });
           this.$router.push('/login');
         }
       }
-    },
+    }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 
@@ -97,9 +97,9 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  padding-top: 30px;
   #register {
     // background: linear-gradient(to bottom, #a46e92 0%,#27455d 100%)
+    margin-top: 5rem;
     h3 {
       color: #5dd5c8;
       text-align: center;
@@ -121,6 +121,10 @@ export default {
           margin: 18px 0;
           width: 100%;
           height: 42px;
+        }
+        .btn-submit {
+          background: #5dd5c8;
+          border: 0;
         }
         // input:nth-child(5) {
         //   background: #5dd5c8;

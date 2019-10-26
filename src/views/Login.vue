@@ -59,12 +59,12 @@ export default {
 
       model: {
         email: '',
-        password: '',
-      },
+        password: ''
+      }
     };
   },
   props: {
-    msg: String,
+    msg: String
   },
   methods: {
     async login() {
@@ -72,7 +72,7 @@ export default {
       if (!emailReg.test(this.model.email)) {
         this.$message({
           type: 'success',
-          message: '密码或邮箱不合法',
+          message: '密码或邮箱不合法'
         });
         return;
       }
@@ -83,10 +83,10 @@ export default {
       this.$router.push('/joblist');
       this.$message({
         type: 'success',
-        message: '登录成功',
+        message: '登录成功'
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -96,121 +96,123 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  padding-top: 30px;
   background: #fff;
-
+ 
   // background: linear-gradient(to bottom, #a46e92 0%,#27455d 100%)
-
-  h3 {
-    color: #5dd5c8;
-    text-align: center;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 32px;
-    letter-spacing: 0.5px;
-    position: relative;
-  }
-
-  form {
-    padding-top: 20px;
-    margin: 0 15px;
-    .login-btn {
-      display: flex;
-      justify-content: space-between;
-      height: 4.7692rem;
-      // margin-bottom: 44px;
+  #login {
+    width: 100%;
+    margin-top: 5rem;
+    h3 {
+      color: #5dd5c8;
       text-align: center;
-      // padding-bottom: 0px;
-      // 处理元素空白
-      white-space: nowrap;
-      padding: 3px 0 8px 0;
-
-      //   @media (max-width: 800px) {
-      //     display: table;
-      //     width: 100%;
-      //     border-bottom-width: 0;
-      //   }
-      .isPhone {
-        font-size: 1rem;
-        color: #414a60;
-        border-bottom: 2px solid #62d5c8;
-      }
-
-      span {
-        display: inline-block;
-        width: 70px;
-        font-size: 0.875rem;
-        line-height: 0.875rem;
-        color: #9fa3b0;
-        // margin: 0 28px -2px;
-        padding: 8px 0 15px;
-        height: 1rem;
-        border-bottom: 2px solid #f2f5f9;
-        box-sizing: content-box;
-        cursor: pointer;
-        // width: 50%;
-        @media (max-width: 800px) {
-          //============
-          display: table-cell;
-          width: 50%;
-          text-align: center;
-          padding-top: 8px;
-        }
-        // .cur {
-        //   border-bottom-color: #62d5c8;
-        //   font-size: 16px;
-        //   color: #414a60;
-        // }
-        .login-btn1 {
-          margin-left: 0;
-        }
-        .login-btn2 {
-          text-align: center;
-        }
-      }
-      // span:hover {
-      //   color: #414a60;
-
-      //   border-bottom-color: #62d5c8;
-      // }
+      font-weight: 500;
+      font-size: 26px;
+      line-height: 32px;
+      letter-spacing: 0.5px;
+      position: relative;
     }
-    .info-login {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      input {
-        margin: 18px 0;
-        width: 100%;
-        height: 42px;
-      }
 
-      input:nth-child(4) {
-        background: #5dd5c8;
-        border: 0;
-        color: #fff;
+    form {
+      padding-top: 20px;
+      margin: 0 15px;
+      .login-btn {
+        display: flex;
+        justify-content: space-between;
+        height: 4.7692rem;
+        // margin-bottom: 44px;
+        text-align: center;
+        // padding-bottom: 0px;
+        // 处理元素空白
+        white-space: nowrap;
+        padding: 3px 0 8px 0;
+
+        //   @media (max-width: 800px) {
+        //     display: table;
+        //     width: 100%;
+        //     border-bottom-width: 0;
+        //   }
+        .isPhone {
+          font-size: 1rem;
+          color: #414a60;
+          border-bottom: 2px solid #62d5c8;
+        }
+
+        span {
+          display: inline-block;
+          width: 70px;
+          font-size: 0.875rem;
+          line-height: 0.875rem;
+          color: #9fa3b0;
+          // margin: 0 28px -2px;
+          padding: 8px 0 15px;
+          height: 1rem;
+          border-bottom: 2px solid #f2f5f9;
+          box-sizing: content-box;
+          cursor: pointer;
+          // width: 50%;
+          @media (max-width: 800px) {
+            //============
+            display: table-cell;
+            width: 50%;
+            text-align: center;
+            padding-top: 8px;
+          }
+          // .cur {
+          //   border-bottom-color: #62d5c8;
+          //   font-size: 16px;
+          //   color: #414a60;
+          // }
+          .login-btn1 {
+            margin-left: 0;
+          }
+          .login-btn2 {
+            text-align: center;
+          }
+        }
+        // span:hover {
+        //   color: #414a60;
+
+        //   border-bottom-color: #62d5c8;
+        // }
       }
-      .verification-send {
-        position: relative;
-        .verification-btn {
-          height: 25px;
-          position: absolute;
-          right: 6px;
-          top: 25px;
+      .info-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        input {
+          margin: 18px 0;
+          width: 100%;
+          height: 42px;
+        }
+
+        input:nth-child(4) {
+          background: #5dd5c8;
           border: 0;
-          border-left: 1px solid#9fa3b0;
+          color: #fff;
+        }
+        .verification-send {
+          position: relative;
+          .verification-btn {
+            height: 25px;
+            position: absolute;
+            right: 6px;
+            top: 25px;
+            border: 0;
+            border-left: 1px solid#9fa3b0;
+            color: #5dd5c8;
+          }
+        }
+      }
+    }
+
+    .login-footer {
+      text-align: center;
+      span {
+        color: #aaa;
+        font-size: 14px;
+        a {
           color: #5dd5c8;
         }
-      }
-    }
-  }
-
-  .login-footer {
-    text-align: center;
-    span {
-      color: #aaa;
-      font-size: 14px;
-      a {
-        color: #5dd5c8;
       }
     }
   }

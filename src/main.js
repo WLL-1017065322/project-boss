@@ -14,14 +14,13 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import http from './http';
+import http from './request/http';
 
 // import '../public/iconfont/iconfont.css';
 
 Vue.use(Vuex);
 Vue.use(ElementUI);
 Vue.use(Mint);
-
 
 Vue.config.productionTip = false;
 

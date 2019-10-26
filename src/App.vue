@@ -4,7 +4,7 @@
       <router-view />
     </transition>
 
-    <footer-guide></footer-guide>
+    <footer-guide v-show="!this.$route.meta.isPublic"></footer-guide>
   </div>
 </template>
 

@@ -26,6 +26,10 @@ const router = new Router({
     },
     {
       path: '/',
+      redirect: '/joblist',
+    },
+    {
+      path: '/joblist',
       name: 'joblist',
       component: Joblist,
     },
